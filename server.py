@@ -64,6 +64,9 @@ while True:
     # Determinar si fue un aplauso
     response = "1" if prediction > 90 else "0"
     client_socket.send(response.encode())
-    print(f"📤 Respuesta enviada: {response}")
+    print(f"📤 Fuck enviada: {response}")
 
     client_socket.close()
+
+
+#asfasdf
