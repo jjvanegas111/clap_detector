@@ -10,7 +10,7 @@ from scipy.io.wavfile import write
 # Configuración
 DURATION = 2  # Duración de cada grabación en segundos
 SAMPLE_RATE = 44100  # Frecuencia de muestreo
-OUTPUT_DIR = "live_spectrograms"  # Carpeta donde se guardarán los espectrogramas
+OUTPUT_DIR = "live_spectrogramsX"  # Carpeta donde se guardarán los espectrogramas
 
 # Crear la carpeta si no existe
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -30,7 +30,7 @@ def generate_spectrogram(audio_path, output_path):
     S_db = librosa.power_to_db(S, ref=np.max)
 
     plt.figure(figsize=(2, 2))  # 128x128 px
-    librosa.display.specshow(S_db, sr=sr, cmap='inferno')
+    librosa.display.specshow(S_db, sr=sr, cmap='viridis')
     plt.axis('off')  # Ocultar ejes
     plt.savefig(output_path, bbox_inches='tight', pad_inches=0, dpi=64)  # Guardar espectrograma
     plt.close()

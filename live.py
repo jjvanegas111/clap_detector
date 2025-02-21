@@ -12,7 +12,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 # Configuración
 DURATION = 2  # Duración de cada grabación en segundos
 SAMPLE_RATE = 44100  # Frecuencia de muestreo
-OUTPUT_DIR = "live_spectrograms"  # Carpeta donde se guardarán los espectrogramas
+OUTPUT_DIR = "live_spectrograms_verdes"  # Carpeta donde se guardarán los espectrogramas
 MODEL_PATH = "clap_network.h5"  # Ruta del modelo entrenado
 
 # Crear la carpeta si no existe
@@ -48,7 +48,7 @@ def generate_spectrogram(audio_path, output_path):
     S_db = librosa.power_to_db(S, ref=np.max)
 
     plt.figure(figsize=(2, 2))  # 128x128 px
-    librosa.display.specshow(S_db, sr=sr, cmap='inferno')
+    librosa.display.specshow(S_db, sr=sr, cmap='viridis')
     plt.axis('off')  # Ocultar ejes
     plt.savefig(output_path, bbox_inches='tight', pad_inches=0, dpi=64)
     plt.close()
@@ -77,7 +77,7 @@ try:
 
         # Hacer la predicción
         prediction = predict_clap(spectrogram_filename)
-        if prediction > 90:
+        if prediction > 50:
             print(f"👏 ({prediction:.1f}%) #{counter}")
         #else:
             #print(f".")
